@@ -1,0 +1,30 @@
+# Base Image 
+FROM python:3.11
+
+# Set working directory
+WORKDIR /app
+
+# Install Java and other dependencies
+RUN apt-get update && \
+    apt-get install -y default-jre wget && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt ${app}
+
+# Install JupyterLab and Python libraries
+RUN pip install -r /app/requirements.txt
+
+# Download MySQL JDBC driver
+RUN wget -O /app/mysql-connector-java.jar https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar
+
+# Download PostgreSQL JDBC driver
+RUN wget -O /app/postgresql-connector-java.jar https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.20/postgresql-42.2.20.jar
+
+# Set SPARK_CLASSPATH to include JDBC drivers
+ENV SPARK_CLASSPATH=/app/mysql-connector-java.jar:/app/postgresql-connector-java.jar
+
+# Expose the port for JupyterLab
+EXPOSE 8888
+
+# Run JupyterLab when the container starts
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
