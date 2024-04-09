@@ -21,7 +21,7 @@ RUN wget -O /app/mysql-connector-java.jar https://repo1.maven.org/maven2/mysql/m
 RUN wget -O /app/postgresql-connector-java.jar https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.20/postgresql-42.2.20.jar
 
 # Set SPARK_CLASSPATH to include JDBC drivers
-ENV SPARK_CLASSPATH=/app/mysql-connector-java.jar:/app/postgresql-connector-java.jar
+ENV SPARK_CLASSPATH=/app/mysql-connector-java.jar:/app/postgresql-connector-java.jar:$SPARK_CLASSPATH
 
 # Expose the port for JupyterLab
 EXPOSE 8888

@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+
+  jupyterlab:
+    container_name: jupyterlab
+    build: 
+      context: /Users/mukovhe.mukwevho/mukovhe/Practical-Data-Engineering/images/jupyterlab
+      dockerfile: /Users/mukovhe.mukwevho/mukovhe/Practical-Data-Engineering/images/jupyterlab/dockerfile
+    ports:
+      - "8888:8888"
+    develop:
+      watch:
+        - action: sync
+          path: /Users/mukovhe.mukwevho/mukovhe/Practical-Data-Engineering/images/jupyterlab
+          target: /dockerfile
+
+    volumes:
+      - ./:/app
+    depends_on:
+      - postgres-db
+
+  postgres-db:
+    container_name: postgres_db
+    image: public.ecr.aws/docker/library/postgres:14.8
+    restart: always
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    command: [ postgres, -c, wal_level=logical, -c, log_statement=all ]
+    ports:
+      - "45432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data:rw
+
+
+name: practical_data_engineering       
+volumes:
+  db-data:
+
+
+    

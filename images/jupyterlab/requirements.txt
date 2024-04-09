@@ -8,3 +8,7 @@ matplotlib
 pyNetLogo 
 SALib
 pyspark
+mysql-connector-python
+py4j
+SQLAlchemy
+psycopg2-binary
