@@ -19,5 +19,8 @@ docker-compose logs pytest
 # Remove the pytest container after running tests
 docker-compose rm -f pytest
 
-# run docker
-#docker compose up
+
+
+
+#run other containers without pytest
+#docker compose up --scale pytest=0

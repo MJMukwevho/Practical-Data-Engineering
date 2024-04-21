@@ -27,3 +27,9 @@ This is a very basic example where we use pyspark running on jupyter notebooks t
 ### Difficulty
 
 3/10
+
+## Steps for Data Engineering Best practices
+
+### Object Oriented Programming: OOP
+
+- Code once and reuse many times

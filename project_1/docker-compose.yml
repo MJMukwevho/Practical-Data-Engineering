@@ -1,6 +1,30 @@
-version: '3'
+version: '3.8'
 
 services:
+
+  pytest:
+    container_name: pytest
+    image: pytest:pytest
+    volumes:
+      - ./src:/app/src
+      - ./tests:/app
+    command: ["python3", "-m", "pytest"]
+
+  postgres-db:
+    container_name: postgres_db
+    image: public.ecr.aws/docker/library/postgres:14.8
+    restart: always
+    environment:
+      POSTGRES_DB: postgres_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    command: [postgres, -c, wal_level=logical, -c, log_statement=all]
+    ports:
+      - "45432:5432"
+    volumes:
+      - ./local-data/:/docker-entrypoint-initdb.d/
+      - db-data:/var/lib/postgresql/data
+
 
   jupyterlab:
     container_name: jupyterlab
@@ -17,36 +41,11 @@ services:
       - ./:/app
     depends_on:
       - postgres-db
-      - pytest
 
-  postgres-db:
-    container_name: postgres_db
-    image: public.ecr.aws/docker/library/postgres:14.8
-    restart: always
-    environment:
-      POSTGRES_DB: postgres_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    command: [ postgres, -c, wal_level=logical, -c, log_statement=all ]
-    ports:
-      - "45432:5432"
-    volumes:
-      - ./data/:/docker-entrypoint-initdb.d/:ro
-      - db-data:/var/lib/postgresql/data:rw
 
-    depends_on:
-      - pytest 
 
-  pytest:
-    container_name: pytest
-    image: pytest:pytest
-    volumes:
-      - ./src:/app/src
-      - ./tests:/app
-    command: ["python3", "-m", "pytest"]
 
- 
-name: practical_data_engineering       
+  
 volumes:
   db-data:
 
