@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
 
@@ -25,7 +25,6 @@ services:
       - ./local-data/:/docker-entrypoint-initdb.d/
       - db-data:/var/lib/postgresql/data
 
-
   jupyterlab:
     container_name: jupyterlab
     image: jupyterlab:jupyterlab
@@ -36,18 +35,67 @@ services:
         - action: sync
           path: ../images/jupyterlab   
           target: /dockerfile
-
     volumes:
       - ./:/app
     depends_on:
       - postgres-db
 
+  airflow-postgresql:
+    image: 'bitnami/postgresql:latest'
+    environment:
+      - POSTGRESQL_DATABASE=bitnami_airflow
+      - POSTGRESQL_USERNAME=bn_airflow
+      - POSTGRESQL_PASSWORD=bitnami1
+    volumes:
+      - ./local-data/:/bitnami/postgresql
+      - db-data:/var/lib/postgresql/data
 
+  redis:
+    image: 'bitnami/redis:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - ./local-data/:/bitnami
 
+  airflow-worker:
+    image: bitnami/airflow-worker:latest
+    environment:
+      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
+      - AIRFLOW_EXECUTOR=CeleryExecutor
+      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_USERNAME=bn_airflow
+      - AIRFLOW_DATABASE_PASSWORD=bitnami1
+      - AIRFLOW_LOAD_EXAMPLES=yes
 
-  
+  airflow-scheduler:
+    image: bitnami/airflow-scheduler:latest
+    environment:
+      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
+      - AIRFLOW_EXECUTOR=CeleryExecutor
+      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_USERNAME=bn_airflow
+      - AIRFLOW_DATABASE_PASSWORD=bitnami1
+      - AIRFLOW_LOAD_EXAMPLES=yes
+
+  airflow:
+    container_name: airflow
+    image: bitnami/airflow:latest
+    environment:
+      - AIRFLOW_FERNET_KEY=46BKJoQYlPPOexq0OhDZnIlNepKFf87WFwLbfzqDDho=
+      - AIRFLOW_SECRET_KEY=a25mQ1FHTUh3MnFRSk5KMEIyVVU2YmN0VGRyYTVXY08=
+      - AIRFLOW_EXECUTOR=CeleryExecutor
+      - AIRFLOW_DATABASE_NAME=bitnami_airflow
+      - AIRFLOW_DATABASE_USERNAME=bn_airflow
+      - AIRFLOW_DATABASE_PASSWORD=bitnami1
+      - AIRFLOW_LOAD_EXAMPLES=yes
+    ports:
+      - '8080:8080'
+
 volumes:
   db-data:
+
 
 
     

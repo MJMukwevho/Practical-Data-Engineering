@@ -23,4 +23,4 @@ docker-compose rm -f pytest
 
 
 #run other containers without pytest
-#docker compose up --scale pytest=0
+docker compose up --scale pytest=0
