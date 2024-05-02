@@ -86,13 +86,13 @@ x-airflow-common:
 
 services:
 
-  pytest:
-    container_name: pytest
-    image: pytest:pytest
-    volumes:
-      - ./src:/app/src
-      - ./tests:/app
-    command: ["python3", "-m", "pytest"]
+  # pytest:
+  #   container_name: pytest
+  #   image: pytest:pytest
+  #   volumes:
+  #     - ./src:/app/src
+  #     - ./tests:/app
+  #   command: ["python3", "-m", "pytest"]
 
   postgres-db:
     container_name: postgres_db
@@ -188,8 +188,7 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
-    volumes:
-      - ../src:/opt/airflow/dags
+
 
   airflow-triggerer:
     <<: *airflow-common
@@ -295,9 +294,22 @@ services:
           target: /dockerfile
     volumes:
       - ./:/app
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    restart: unless-stopped
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-storage:/var/lib/grafana
+
+
+
 volumes:
   postgres-db-volume:
   db-data:
+  grafana-storage:
 
 
 

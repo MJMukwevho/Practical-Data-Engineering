@@ -1,5 +1,5 @@
 import pandas as pd
-from get_data import get_data
+from .get_data import get_data
 
 
 def create_dataframe(num):

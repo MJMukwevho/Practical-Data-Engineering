@@ -4,6 +4,7 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
+from custom_lib.sql_base import sql_base
 
 
 def task1():
@@ -29,8 +30,8 @@ dag = DAG("simple_dag", default_args=default_args, schedule_interval=None)
 
 # Define the tasks
 start_task = DummyOperator(task_id="start_task", dag=dag)
-task1 = PythonOperator(task_id="task1", python_callable=task1, dag=dag)
-task2 = PythonOperator(task_id="task2", python_callable=task2, dag=dag)
+task1 = PythonOperator(task_id="create_database", python_callable=task1, dag=dag)
+task2 = PythonOperator(task_id="Fetch_data", python_callable=task2, dag=dag)
 
 # Define the task dependencies
 start_task >> task1 >> task2
