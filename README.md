@@ -27,12 +27,13 @@ The random user API generates data that could be thought as belonging to a user 
 
 ### Skills
 
-- Docker
-- Python
-- Pyspark
-- Postgres
-- Apache Airflow
-- Grafana
+| Skill          | Explanation                                                                          |
+| -------------- | ------------------------------------------------------------------------------------ |
+| Docker         | A platform designed to help developers build, share, and run container applications. |
+| Python         | A high level interpreted programming language                                        |
+| Postgres       | A relational database                                                                |
+| Apache airflow | Open-Source orchestration tool                                                       |
+| Grafana        | Open source visualization tool                                                       |
 
 ### Difficulty
 
