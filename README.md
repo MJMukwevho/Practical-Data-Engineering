@@ -35,10 +35,6 @@ The random user API generates data that could be thought as belonging to a user 
 | Apache airflow | Open-Source orchestration tool                                                       |
 | Grafana        | Open source visualization tool                                                       |
 
-### Difficulty
-
-3/10
-
 ## Best Data Engineering practices implemented
 
 1. Version control with git and github
