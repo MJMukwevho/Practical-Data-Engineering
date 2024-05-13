@@ -86,13 +86,16 @@ x-airflow-common:
 
 services:
 
-  # pytest:
-  #   container_name: pytest
-  #   image: pytest:pytest
-  #   volumes:
-  #     - ./src:/app/src
-  #     - ./tests:/app
-  #   command: ["python3", "-m", "pytest"]
+  pytest:
+    container_name: pytest
+    image: pytest:pytest
+    volumes:
+      - ./dags/custom_lib:/app/custom_lib
+      - ./tests:/app
+    command: ["python3", "-m", "pytest"]
+
+    depends_on:
+      - postgres-db
 
   postgres-db:
     container_name: postgres_db
