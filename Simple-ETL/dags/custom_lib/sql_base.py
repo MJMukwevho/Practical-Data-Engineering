@@ -26,16 +26,20 @@ class sql_base:
         with conn_details:
             cursor = conn_details.cursor()
             query = query
-            result = cursor.execute(query)
+            cursor.execute(query)
 
-        return result
+            if cursor.description is not None:
+                # If it is a select statement, fetch the result
+                result = cursor.fetchall()  # Assuming you expect a single row result
+                return result  # Assuming the query returns a single value
+            else:
+                # If it's not a select statement, return True to indicate success
+                return True
 
     def create_schema(self, schema_name):
 
         query = f"CREATE SCHEMA IF NOT EXISTS {schema_name}"
-        response = self.sql_runner(query=query)
-
-        return response
+        self.sql_runner(query=query)
 
     def create_table(self, table_name, schema_name, table_definitions):
 
@@ -62,5 +66,3 @@ class sql_base:
         )
 
         self.sql_runner(query=insert_statement)
-
-        return None
