@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # #build jupyter notebook
-# docker build -t jupyterlab:jupyterlab ../images/jupyterlab
+docker build -t jupyterlab:jupyterlab ../images/jupyterlab
 # # Build pytest container if not exist
-# docker build -t pytest:pytest ../images/pytest
+docker build -t pytest:pytest ../images/pytest
 # Stop and remove the existing pytest container if it exists
 # zip the module
 
