@@ -12,14 +12,13 @@ services:
       timeout: 3s
       retries: 3
     volumes:
-      - spark_apps:/opt/spark/apps
-      - spark-logs:/opt/spark/spark-events
+      - ./spark_apps:/opt/spark/apps
+      - ./spark-logs:/opt/spark/spark-events
     env_file:
       - .env.spark
     ports:
       - '9090:8080'
       - '7077:7077'
-
 
   spark-history-server:
     container_name: da-spark-history
