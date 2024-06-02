@@ -1,3 +1,8 @@
+"""
+This module serves as a boiler-plate code for all things sql
+that are ran in python.
+"""
+
 import psycopg2
 import json
 

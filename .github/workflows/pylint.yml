@@ -20,4 +20,4 @@ jobs:
           pip install pylint pytest pandas
       - name: Analysing the code with pylint
         run: |
-          pylint $(git ls-files 'exploratory-ETL/dags/custom_lib/fetch_data.py')
+          pylint $(git ls-files 'exploratory-ETL/dags/custom_lib/*.py')

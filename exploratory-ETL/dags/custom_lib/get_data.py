@@ -1,3 +1,8 @@
+"""
+This module uses the request the request module to access
+data in a random user api and mimick a login session
+"""
+
 import requests
 import json
 
