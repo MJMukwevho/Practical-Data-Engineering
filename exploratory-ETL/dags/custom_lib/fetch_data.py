@@ -1,7 +1,10 @@
 """
-This module provides functionality to create a pandas DataFrame using data fetched from the get_data function.
+This module provides functionality to create a pandas DataFrame 
+using data fetched from the get_data function.
 
-The create_dataframe function takes an integer input to specify the number of data entries and returns a pandas DataFrame containing that many records.
+The create_dataframe function takes an integer input to specify
+the number of data entries and returns a pandas DataFrame containing
+that many records.
 """
 
 import pandas as pd
@@ -31,8 +34,3 @@ def create_dataframe(num):
     data = pd.DataFrame(people_list)
 
     return data
-
-
-# Example usage
-# df = create_dataframe(10)
-# print(df)
