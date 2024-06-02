@@ -5,6 +5,13 @@ from .get_data import get_data
 def create_dataframe(num):
     """
     Function to create pandas dataframe
+
+    Input:
+        num --> number of data entries
+
+    return:
+        Pandas dataframe with number of records equal to num
+
     """
     people_list = []
 
