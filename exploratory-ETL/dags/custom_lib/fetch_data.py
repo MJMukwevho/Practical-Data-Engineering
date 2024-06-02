@@ -3,6 +3,9 @@ from .get_data import get_data
 
 
 def create_dataframe(num):
+    """
+    Function to create pandas dataframe
+    """
     people_list = []
 
     for _ in range(num):
