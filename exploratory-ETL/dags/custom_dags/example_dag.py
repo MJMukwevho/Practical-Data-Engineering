@@ -1,17 +1,20 @@
-import sys
-import os
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
-from custom_lib.sql_base import sql_base
 
 
 def task1():
+    """
+    Example task 1
+    """
     print("Executing task 1")
 
 
 def task2():
+    """
+    Example task 2
+    """
     print("Executing task 2")
 
 

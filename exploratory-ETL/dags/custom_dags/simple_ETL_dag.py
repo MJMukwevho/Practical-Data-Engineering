@@ -1,5 +1,3 @@
-import sys
-import os
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.python_operator import PythonOperator
@@ -9,6 +7,13 @@ from custom_lib.get_data import get_data
 
 
 def create_db_schema_table():
+    """
+    ---------------------
+    Create
+    ---------------------
+    schema: users
+    table:  people
+    """
 
     database = sql_base()
     database.create_schema(schema_name="users")
@@ -21,6 +26,9 @@ def create_db_schema_table():
 
 
 def load_data():
+    """
+    Fetch data from API
+    """
     database = sql_base()
     _, record = get_data()
 
