@@ -20,4 +20,4 @@ jobs:
           pip install pylint pytest pyspark SQLAlchemy psycopg2-binary apache-airflow
       - name: Analysing the code with pylint
         run: |
-          pylint $(git ls-files 'custom_lib/*.py')
+          pylint $(git ls-files 'fetch_data.py')
