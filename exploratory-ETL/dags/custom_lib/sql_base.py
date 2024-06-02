@@ -44,6 +44,8 @@ class SqlBase:
                 result = cursor.fetchall()  # Assuming you expect a single row result
                 return result  # Assuming the query returns a single value
 
+            return True
+
     def create_schema(self, schema_name):
         """
         Function to create schema on databases
