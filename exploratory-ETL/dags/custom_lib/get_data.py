@@ -13,7 +13,7 @@ def get_data():
     """
     try:
         url = "https://randomuser.me/api/"
-        response = requests.get(url)
+        response = requests.get(url, timeout=10)
         response.raise_for_status()  # Raise an HTTPError for bad responses
         status_code = response.status_code
         response_json = response.json()
