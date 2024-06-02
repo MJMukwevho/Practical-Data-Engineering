@@ -37,16 +37,12 @@ class SqlBase:
 
         with conn_details:
             cursor = conn_details.cursor()
-            query = query
             cursor.execute(query)
 
             if cursor.description is not None:
                 # If it is a select statement, fetch the result
                 result = cursor.fetchall()  # Assuming you expect a single row result
                 return result  # Assuming the query returns a single value
-            else:
-                # If it's not a select statement, return True to indicate success
-                return True
 
     def create_schema(self, schema_name):
         """
