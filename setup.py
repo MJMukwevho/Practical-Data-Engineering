@@ -1,12 +1,15 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(
-    name="print_and_show_checker",
+    name="your_project",
     version="0.1",
-    py_modules=["custom_checker"],
+    packages=find_packages(),
+    install_requires=[
+        "pylint",
+    ],
     entry_points={
-        "pylint.checkers": [
-            "print_and_show_checker = custom_checker:register",
+        "pylint.plugins": [
+            "print_checker = custom_checkers.custom_checkers",
         ],
     },
 )

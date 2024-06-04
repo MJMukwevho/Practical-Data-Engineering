@@ -1,0 +1,2 @@
+[MASTER]
+load-plugins=custom_checkers.custom_checkers
