@@ -1,4 +1,4 @@
-from custom_checkers.custom_checker import PrintAndShowChecker
+from custom_checker import PrintAndShowChecker
 
 
 def register(linter):
