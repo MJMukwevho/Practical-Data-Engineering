@@ -31,7 +31,7 @@ jobs:
           pylint --version
       - name: Set PYTHONPATH
         run: |
-          echo "PYTHONPATH=$(pwd)/exploratory-ETL/dags/custom_lib" >> $GITHUB_ENV
+          echo "PYTHONPATH=$(pwd)/custom_checkers" >> $GITHUB_ENV
       - name: Analysing the code with pylint
         run: |
           pylint $(git ls-files 'exploratory-ETL/dags/custom_lib/*.py')
