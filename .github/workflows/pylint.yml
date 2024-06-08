@@ -1,6 +1,9 @@
 name: Pylint
 
-on: [push]
+on:
+  push:
+    branches:
+      - "**"
 
 jobs:
   build:
@@ -24,6 +27,11 @@ jobs:
           pip install .
           echo "Installed packages:"
           pip list
+          echo "Pylint version:"
+          pylint --version
+      - name: Set PYTHONPATH
+        run: |
+          echo "PYTHONPATH=$(pwd)/exploratory-ETL/dags/custom_lib" >> $GITHUB_ENV
       - name: Analysing the code with pylint
         run: |
-          pylint $(git ls-files 'exploratory-ETL/dags/custom_lib/*.py')
+          pylint $(git ls-files '*.py')
