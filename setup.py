@@ -10,6 +10,6 @@ setup(
     entry_points={
         "pylint.plugins": [
             "print_checker = custom_checkers.custom_checkers",
-        ],
+        ]
     },
 )
