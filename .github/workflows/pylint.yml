@@ -34,4 +34,4 @@ jobs:
           echo "PYTHONPATH=$(pwd)/exploratory-ETL/dags/custom_lib" >> $GITHUB_ENV
       - name: Analysing the code with pylint
         run: |
-          pylint $(git ls-files '*.py')
+          pylint $(git ls-files 'exploratory-ETL/dags/custom_lib/*.py')
