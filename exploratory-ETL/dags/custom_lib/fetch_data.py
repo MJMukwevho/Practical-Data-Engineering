@@ -34,5 +34,4 @@ def create_dataframe(num):
     data = pd.DataFrame(people_list)
 
     print("my name")
-
     return data
