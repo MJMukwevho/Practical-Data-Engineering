@@ -57,7 +57,7 @@ class SqlBase:
     def create_table(
         self,
         table_name: str,
-        schema_name: str, 
+        schema_name: str,
         table_definitions: str,
         ) -> None:
         """
