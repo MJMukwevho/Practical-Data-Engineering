@@ -4,19 +4,6 @@ from airflow.operators.python_operator import PythonOperator
 from datetime import datetime
 
 
-def task1():
-    """
-    Example task 1
-    """
-    print("Executing task 1")
-
-
-def task2():
-    """
-    Example task 2
-    """
-    print("Executing task 2")
-
 
 # Define the default arguments for the DAG
 default_args = {
