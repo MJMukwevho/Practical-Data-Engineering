@@ -15,7 +15,7 @@ class SqlBase:
     def __init__(self):
         pass
 
-    def sql_runner(self, query):
+    def sql_runner(self, query: str):
         """
         Creates connections and performs operations on databases
         """
@@ -46,7 +46,7 @@ class SqlBase:
 
             return True
 
-    def create_schema(self, schema_name):
+    def create_schema(self, schema_name: str):
         """
         Function to create schema on databases
         """
@@ -54,7 +54,12 @@ class SqlBase:
         query = f"CREATE SCHEMA IF NOT EXISTS {schema_name}"
         self.sql_runner(query=query)
 
-    def create_table(self, table_name, schema_name, table_definitions):
+    def create_table(
+        self,
+        table_name: str,
+        schema_name: str,
+        table_definitions: str,
+        ) -> None:
         """
         Function to create database tables
         """
@@ -63,7 +68,10 @@ class SqlBase:
 
         self.sql_runner(query)
 
-    def write_record_to_table(self, record):
+    def write_record_to_table(
+        self,
+        record: dict
+        ) -> None:
         """
         function to write records to tables in databases
         """

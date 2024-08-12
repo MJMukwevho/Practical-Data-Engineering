@@ -11,7 +11,7 @@ import pandas as pd
 from .get_data import get_data
 
 
-def create_dataframe(num):
+def create_dataframe(num: int) -> pd.DataFrame:
     """
     Function to create a pandas DataFrame.
 
