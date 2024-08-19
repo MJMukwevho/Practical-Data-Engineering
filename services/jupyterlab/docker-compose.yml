@@ -1,0 +1,13 @@
+services:
+  jupyterlab:
+    container_name: jupyterlab
+    image: jupyterlab:latest
+    ports:
+      - "8888:8888"
+    develop:
+      watch:
+        - action: sync
+          path: ../images/jupyterlab   
+          target: /dockerfile
+    volumes:
+      - .././:/workspace
