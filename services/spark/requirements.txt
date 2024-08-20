@@ -1,4 +1,0 @@
-numpy
-pandas 
-pyspark
-py4j
