@@ -1,5 +1,5 @@
 services:
-  spark:
+  spark-master:
     image: docker.io/bitnami/spark:3.5
     environment:
       - SPARK_MODE=master
@@ -9,14 +9,16 @@ services:
       - SPARK_SSL_ENABLED=no
       - SPARK_USER=spark
     ports:
-      - '8080:8080'
-      - '7077:7077' # Added port for master to listen for workers
+      - '8080:8080'  # Spark UI
+      - '7077:7077'  # Spark Master port
+    networks:
+      - spark-network
 
   spark-worker:
     image: docker.io/bitnami/spark:3.5
     environment:
       - SPARK_MODE=worker
-      - SPARK_MASTER_URL=spark://spark:7077
+      - SPARK_MASTER_URL=spark://spark-master:7077
       - SPARK_WORKER_MEMORY=2G
       - SPARK_WORKER_CORES=2
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
@@ -25,4 +27,27 @@ services:
       - SPARK_SSL_ENABLED=no
       - SPARK_USER=spark
     depends_on:
-      - spark
+      - spark-master
+    networks:
+      - spark-network
+
+  jupyterlab:
+    container_name: jupyterlab
+    image: jupyterlab:latest
+    ports:
+      - "8888:8888"
+    develop:
+      watch:
+        - action: sync
+          path: ../images/jupyterlab   
+          target: /dockerfile
+    volumes:
+      - .././:/workspace
+
+    networks:
+      - spark-network
+
+networks:
+  spark-network:
+    driver: bridge
+
