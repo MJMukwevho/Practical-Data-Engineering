@@ -10,4 +10,13 @@ services:
           path: ../images/jupyterlab   
           target: /dockerfile
     volumes:
-      - .././:/workspace
+      - ${WORK_DIR:-/workspace} 
+
+    working_dir: ${WORK_DIR:-/workspace} 
+    networks:
+      - spark-network
+
+
+networks:
+  spark-network:
+    external: true

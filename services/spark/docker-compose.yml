@@ -30,24 +30,7 @@ services:
       - spark-master
     networks:
       - spark-network
-
-  jupyterlab:
-    container_name: jupyterlab
-    image: jupyterlab:latest
-    ports:
-      - "8888:8888"
-    develop:
-      watch:
-        - action: sync
-          path: ../images/jupyterlab   
-          target: /dockerfile
-    volumes:
-      - .././:/workspace
-
-    networks:
-      - spark-network
-
 networks:
   spark-network:
-    driver: bridge
+    external: true
 
