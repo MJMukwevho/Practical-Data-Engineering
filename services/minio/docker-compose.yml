@@ -10,5 +10,14 @@ services:
       - MINIO_ROOT_USER=user
       - MINIO_ROOT_PASSWORD=user_password
     restart: always
+
+    networks:
+      - spark-network
+
+
 volumes:
   minio_data:
+
+networks:
+  spark-network:
+    external: true
