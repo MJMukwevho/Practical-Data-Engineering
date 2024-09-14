@@ -4,18 +4,19 @@ services:
     image: jupyterlab:latest
     ports:
       - "8888:8888"
+      - "4040:4040"
     develop:
       watch:
         - action: sync
           path: ../images/jupyterlab   
           target: /dockerfile
     volumes:
-      - ${WORK_DIR:-/workspace} 
+      - ${WORK_DIR:-/workspace}
+      - ../../projects/:/workspace  # Using an environment variable for the local directory
 
-    working_dir: ${WORK_DIR:-/workspace} 
+    working_dir: ${WORK_DIR:-/workspace}
     networks:
       - spark-network
-
 
 networks:
   spark-network:
