@@ -19,7 +19,7 @@ This is a basic example where we run an ETL task simulating users that visit an 
 
 ## Project Architecture
 
-![ETL Architecture](exploratory-ETL/architecture.drawio.png)
+![ETL Architecture](projects/exploratory-ETL/architecture.drawio.png)
 
 ### Data Flow Story
 
